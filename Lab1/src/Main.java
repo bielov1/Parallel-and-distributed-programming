@@ -17,20 +17,16 @@ public class Main {
     public static final String CFile = FILE_PREFIX + "C.json";
     public static final String aFile = FILE_PREFIX + "a.json";
 
-    public static final int VECTOR_SIZE = 100;
+    public static final int VECTOR_SIZE = 2;
 
 
     public static void main(String[] args) throws InterruptedException {
-        // Створення даних
         makeData();
-        // Створення об'єкту в якому будуть знаходитися всі зміні математичної функції
         WorkingSet workingSet = new WorkingSet();
-        // Ініціалізація даних
         setData(workingSet);
         long start = System.currentTimeMillis();
         compute(workingSet);
         long end = System.currentTimeMillis();
-        // зберігаємо потік даних в файл
         serializeResults(workingSet);
         System.out.println("Time: " + (end - start) + " ms");
     }

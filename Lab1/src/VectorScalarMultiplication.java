@@ -46,9 +46,10 @@ public class VectorScalarMultiplication {
         return result;
     }
 
+    //виправив логіку коду
     private void compute(int start, int end) {
         for (int i = start; i < end; i++) {
-            result[i] = KahanSum.sum(_scalar, _vector[i]);
+            result[i] = _vector[i] * _scalar;
         }
     }
 

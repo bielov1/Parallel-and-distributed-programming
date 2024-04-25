@@ -24,7 +24,14 @@ public class MatrixVectorMultiplication {
             final int end = (i == _numThreads - 1)? n : start + (n / _numThreads);
             Thread thread = new Thread(new Runnable() {
                 public void run() {
-                    compute(start, end);
+                    //виправив логіку коду
+                    for (int col = start; col < end; col++) {
+                        Double[] sumParts = new Double[_vector.length];
+                        for (int ele = 0; ele < _vector.length; ele++) {
+                            sumParts[ele] = _vector[ele] * _matrix[ele][col];
+                        }
+                        result[col] = KahanSum.sum(sumParts);
+                    }
                 }
             });
             threads.add(thread);
@@ -44,23 +51,6 @@ public class MatrixVectorMultiplication {
 
     public Double[] getResult() throws InterruptedException {
         return result;
-    }
-
-    private void compute(int start, int end) {
-        for (int i = start; i < end; i++) {
-            result[i] = multiplyMatrixVectorElement(i);
-        }
-    }
-
-    private Double multiplyMatrixVectorElement(int row) {
-        double sum = 0.0;
-        for (int j = 0; j < _vector.length; j++) {
-            Double firstOperand = _matrix[row][j];
-            Double secondOperand = _vector[j];
-            sum += KahanSum.sum(firstOperand, secondOperand);
-        }
-
-        return sum;
     }
 
     private void printResult() {

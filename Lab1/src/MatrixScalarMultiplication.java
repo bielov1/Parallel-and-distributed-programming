@@ -26,11 +26,7 @@ public class MatrixScalarMultiplication {
             final int end = (i == _numThreads - 1)? n : start + (n / _numThreads);
             Thread thread = new Thread(new Runnable() {
                 public void run() {
-                    for (int row = start; row < end; row++) {
-                        for (int col = 0; col < _matrix[row].length; col++) {
-                            compute(row, col);
-                        }
-                    }
+                    compute(start, end);
                 }
             });
             threads.add(thread);
@@ -53,8 +49,13 @@ public class MatrixScalarMultiplication {
         return result;
     }
 
-    private void compute(int row, int column) {
-        result[row][column] = _matrix[row][column] * _scalar;
+    private void compute(int start, int end) {
+        for (int row = start; row < end; row++) {
+            for (int col = 0; col < _matrix[row].length; col++) {
+                result[row][col] = _matrix[row][col] * _scalar;
+
+            }
+        }
     }
 
     private void printResult() {
