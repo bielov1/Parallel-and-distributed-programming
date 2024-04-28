@@ -18,7 +18,7 @@ public class Main {
     public static final String CFile = FILE_PREFIX + "C.json";
     public static final String aFile = FILE_PREFIX + "a.json";
 
-    public static final int VECTOR_SIZE = 2;
+    public static final int VECTOR_SIZE = 100;
 
 
     public static void main(String[] args) throws InterruptedException {

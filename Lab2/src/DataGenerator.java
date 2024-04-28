@@ -4,8 +4,8 @@ import java.util.Random;
 public class DataGenerator {
     public static final int MIN_PRECISION = 1;
     public static final int MAX_PRECISION = 17;
-    public static final int MIN_VALUE = 0;
-    public static final int MAX_VALUE = 5;
+    public static final int MIN_VALUE = -100;
+    public static final int MAX_VALUE = 100;
 
     public static Double[][] generateSquareMatrix(int size) {
         Double[][] matrix = new Double[size][size];
